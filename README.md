@@ -52,6 +52,9 @@ Algumas mudanças no aplicativo cogitadas para o futuro:
 - Armazenar imagem da capa (busca via ISBN em outra API externa da Open Library, "Covers". Opção de baixar imagem de um link, ou upload da imagem, ou arrastar arquivo para a UI).
 - controles no cabeçalho da tabela de livros, para filtragem e ordenação.
 - exibir as entradas da tabela como cartões, com imagem da capa e layout mais amigável.
+- preenchimento automático de citação a partir de google lens ou OCR.
+- busca de livro e recuperação de dados via Google Lens
+- permitir a busca de dados de livros por mais parâmetros além do ISBN. Fazer a busca em outras APIs além da Open Library.
 
 
 ## COMO EXECUTAR FRONTEND VIA DOCKER

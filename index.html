@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fichamento Acadêmico</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="#" onclick="showSection('home')">Fichamento Acadêmico</a>
+            <div class="navbar-nav">
+                <a class="nav-link" href="#" onclick="showSection('home')">Início</a>
+                <a class="nav-link" href="#" onclick="showSection('livros')">Livros</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- SEÇÃO HOME -->
+        <div id="sec-home" class="spa-section">
+            <div id="home-content"></div>
+        </div>
+
+        <!-- SEÇÃO LIVROS (LISTA + CADASTRO) -->
+        <div id="sec-livros" class="spa-section d-none">
+            <div class="card mb-4">
+                <div class="card-header py-2"><h5 id="form-livro-title" class="mb-0">Adicionar Livro</h5></div>
+                <div class="card-body py-2">
+                    <form id="form-livro" onsubmit="handleSalvarLivro(event)">
+                        <input type="hidden" id="livro_id">
+                        <div class="row g-2">
+                            <div class="col-md-3">
+                                <label class="form-label mb-1">ISBN</label>
+                                <div class="input-group input-group-sm">
+                                    <input type="text" id="ISBN" class="form-control">
+                                    <button type="button" class="btn btn-outline-secondary" onclick="autoPreencherOpenLibrary()">Buscar</button>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <label class="form-label mb-1">Título *</label>
+                                <input type="text" id="livro_titulo" class="form-control form-control-sm" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label mb-1">Subtítulo</label>
+                                <input type="text" id="livro_subtitulo" class="form-control form-control-sm">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label mb-1">Autor</label>
+                                <input type="text" id="livro_autor" class="form-control form-control-sm">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label mb-1">Editora</label>
+                                <input type="text" id="livro_editora" class="form-control form-control-sm">
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label mb-1">Ano</label>
+                                <input type="number" id="livro_anopublic" class="form-control form-control-sm">
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label mb-1">Local</label>
+                                <input type="text" id="livro_localpublic" class="form-control form-control-sm">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label mb-1">Comentários</label>
+                                <textarea id="livro_comentario" class="form-control form-control-sm" rows="1"></textarea>
+                            </div>
+                        </div>
+                        <div class="mt-2">
+                            <button type="submit" class="btn btn-primary btn-sm">Salvar Livro</button>
+                            <button type="button" class="btn btn-secondary btn-sm d-none" id="btn-cancelar-edit" onclick="resetFormLivro()">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header"><h5>Livros Cadastrados</h5></div>
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Título</th>
+                                <th>Autor</th>
+                                <th>Editora</th>
+                                <th>Ano</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabela-livros"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEÇÃO DETALHES DO LIVRO -->
+        <div id="sec-detalhe" class="spa-section d-none">
+            <button class="btn btn-sm btn-outline-secondary mb-3" onclick="showSection('livros')">&larr; Voltar para Livros</button>
+            <div id="detalhe-livro-card"></div>
+
+            <div class="card my-4">
+                <div class="card-header"><h5 id="form-citacao-title">Adicionar Citação</h5></div>
+                <div class="card-body">
+                    <form id="form-citacao" onsubmit="handleSalvarCitacao(event)">
+                        <input type="hidden" id="citacao_id">
+                        <div class="row g-3">
+                            <div class="col-md-3">
+                                <label class="form-label">Página Inicial</label>
+                                <input type="text" id="pagina_inicial" class="form-control">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Página Final</label>
+                                <input type="text" id="pagina_final" class="form-control">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Citação *</label>
+                                <textarea id="texto_citacao" class="form-control" rows="3" required></textarea>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Comentário/Reflexão</label>
+                                <textarea id="citacao_comentario" class="form-control" rows="2"></textarea>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <button type="submit" class="btn btn-success">Salvar Citação</button>
+                            <button type="button" class="btn btn-secondary d-none" id="btn-cancelar-citacao" onclick="resetFormCitacao()">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header"><h5>Citações Registradas</h5></div>
+                <div class="card-body" id="lista-citacoes"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+name: citex
+
+services:
+  backend:
+    build: ../citex-backend
+    container_name: flask_backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - ../citex-backend/data:/app/data
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  frontend:
+    build: .
+    container_name: nginx_frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend

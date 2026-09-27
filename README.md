@@ -54,9 +54,6 @@ Algumas mudanças no aplicativo cogitadas para o futuro:
 - exibir as entradas da tabela como cartões, com imagem da capa e layout mais amigável.
 
 
-## COMO EXECUTAR
-Fazer o download do projeto e abrir o arquivo index.html no seu browser.
-
 ## COMO EXECUTAR FRONTEND VIA DOCKER
 
 **1. Necessário ter o Docker instalado.** Disponível [aqui](https://docs.docker.com/engine/install/).
